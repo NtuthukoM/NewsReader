@@ -1,2 +1,2 @@
-# NewsReader
+# News Reader
 RSS News reader
