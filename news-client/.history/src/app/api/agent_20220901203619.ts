@@ -1,0 +1,6 @@
+import axios, {AxiosResponse} from 'axios';
+
+axios.defaults.baseURL = "https://localhost:7134/";
+
+const responseBody = <T>(response: AxiosResponse<T>) => response.data;
+
