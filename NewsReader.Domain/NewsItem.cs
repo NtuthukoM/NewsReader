@@ -17,9 +17,10 @@
             private string linkField;
 
             private string pubDateField;
+            private string _thumbUrl;
 
-            /// <remarks/>
-            public string title
+        /// <remarks/>
+        public string title
             {
                 get
                 {
@@ -67,6 +68,17 @@
                 set
                 {
                     this.pubDateField = value;
+                }
+            }
+            public string thumbUrl
+        {
+                get
+                {
+                    return this._thumbUrl;
+                }
+                set
+                {
+                    this._thumbUrl = value;
                 }
             }
 

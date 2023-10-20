@@ -7,7 +7,8 @@ namespace NewsReader.Application.Services
 {
     public class News24Service: INews24Service
     {
-        private string url = "https://feeds.24.com/articles/News24/TopStories/rss";
+        private string url = "https://rss.iol.io/no/all-content-feed";
+            //"https://feeds.24.com/articles/News24/TopStories/rss";
         public async Task<List<NewsItem>> GetNewsItemsAsync()
         {
             List<NewsItem> items = new List<NewsItem>();
@@ -52,7 +53,7 @@ namespace NewsReader.Application.Services
                 switch (name)
                 {
                     case "title":
-                        item.title = node.Value?.Split('|')[1].TrimStart();
+                        item.title = node.Value ?? "";
                         break;
 
                     case "description":
@@ -66,6 +67,9 @@ namespace NewsReader.Application.Services
                         if(node.Value != null)
                         item.pubDate = DateTime.Parse(node.Value)
                             .ToShortDateString();
+                        break;
+                    case "content":
+                        item.thumbUrl = node.Attribute("url")?.Value ?? "";
                         break;
                 }
             }
