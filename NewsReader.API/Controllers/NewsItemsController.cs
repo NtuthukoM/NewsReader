@@ -24,5 +24,13 @@ namespace NewsReader.API.Controllers
             return Ok(items);
         }
 
+        //get news items by category:
+        [HttpGet("{category}")]
+        public async Task<IActionResult> Get(string category)
+        {
+            var items = await repository.GetNewsItemsAsync(category);
+            return Ok(items);
+        }
+
     }
 }

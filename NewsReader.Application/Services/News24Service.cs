@@ -8,7 +8,30 @@ namespace NewsReader.Application.Services
     public class News24Service: INews24Service
     {
         private string url = "https://rss.iol.io/no/all-content-feed";
-            //"https://feeds.24.com/articles/News24/TopStories/rss";
+
+        public async Task<List<Catergory>> GetNewsCategoroiesAsync()
+        {
+            var categories = new List<Catergory>();
+            var newsItems = await GetNewsItemsAsync();
+            foreach (var item in newsItems)
+            {
+                //https://www.isolezwe.co.za/izindaba/usomabhizinisi-nohlelo-lokulekelela-abantulayo-5f785660-81ef-46df-b8d0-769deec08176
+                string category = item.link
+                    .Replace("https://www.isolezwe.co.za/", "")
+                    .Split("/")[0];
+                if (!categories.Any(x => x.Title == category))
+                {
+                    var cat = new Catergory
+                    {
+                        Title = category,
+                    };
+                    categories.Add(cat);
+                }
+            }
+            return categories;
+        }
+
+        //"https://feeds.24.com/articles/News24/TopStories/rss";
         public async Task<List<NewsItem>> GetNewsItemsAsync()
         {
             List<NewsItem> items = new List<NewsItem>();
@@ -26,6 +49,7 @@ namespace NewsReader.Application.Services
                     if (element.Name.LocalName == "item")
                     {
                         NewsItem item = ParseNewsItem(element);
+                        if(item.pubDate == DateTime.Now.ToShortDateString())
                         items.Add(item);
                     }
                 }
@@ -42,6 +66,13 @@ namespace NewsReader.Application.Services
                 */
             }
             return items;
+        }
+
+        public async Task<List<NewsItem>> GetNewsItemsAsync(string category)
+        {
+            var newsItems = await GetNewsItemsAsync();
+            var categoryItems = newsItems.Where(x => x.link.Contains($"/{category}/")).ToList();
+            return categoryItems;
         }
 
         private NewsItem ParseNewsItem(XElement element)

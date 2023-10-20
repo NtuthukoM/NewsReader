@@ -10,5 +10,7 @@ namespace NewsReader.Application.Contracts
     public interface INews24Service
     {
         Task<List<NewsItem>> GetNewsItemsAsync();
+        Task<List<NewsItem>> GetNewsItemsAsync(string category);
+        Task<List<Catergory>> GetNewsCategoroiesAsync();
     }
 }
