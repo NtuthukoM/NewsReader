@@ -18,6 +18,7 @@
 
             private string pubDateField;
             private string _thumbUrl;
+        private string shortLinkField;
 
         /// <remarks/>
         public string title
@@ -82,6 +83,18 @@
                 }
             }
 
+        public string shortLink
+        {
+            get
+            {
+                return this.shortLinkField;
+            }
+            set
+            {
+                this.shortLinkField = value;
+            }
         }
+
+    }
 
 }

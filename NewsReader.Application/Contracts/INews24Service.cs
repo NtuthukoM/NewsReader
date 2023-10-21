@@ -12,5 +12,7 @@ namespace NewsReader.Application.Contracts
         Task<List<NewsItem>> GetNewsItemsAsync();
         Task<List<NewsItem>> GetNewsItemsAsync(string category);
         Task<List<Catergory>> GetNewsCategoroiesAsync();
+        Task<NewsArticle> GetNewsArticleAsync(string shortLink);
+
     }
 }

@@ -18,6 +18,11 @@ namespace NewsReader.Application.Repositories
             this.news24 = news24;
         }
 
+        public async Task<NewsArticle> GetNewsArticleAsync(string shortLink)
+        {
+           return await news24.GetNewsArticleAsync(shortLink);           
+        }
+
         public async Task<List<Catergory>> GetNewsCategoroiesAsync()
         {
             return await news24.GetNewsCategoroiesAsync();
