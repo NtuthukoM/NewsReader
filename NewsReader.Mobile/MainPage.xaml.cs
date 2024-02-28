@@ -3,10 +3,12 @@
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        List<NewsReader.Mobile.Models.Catergory> categories;
 
         public MainPage()
         {
             InitializeComponent();
+
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
