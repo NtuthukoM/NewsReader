@@ -18,7 +18,7 @@ public partial class NewsItemsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-		// Load news items
+		// Load news items&
 		var newsItems = new List<NewsReader.Mobile.Models.NewsItem>();
 		var client = new HttpClient(new HttpsClientHandlerService().GetPlatformMessageHandler());
 		var response = client.GetStringAsync(categoryUrl).Result;
@@ -29,6 +29,7 @@ public partial class NewsItemsPage : ContentPage
 	async void NewsItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
 	{
         var newsItem = (NewsReader.Mobile.Models.NewsItem)e.Item;
-        await Navigation.PushAsync(new NewsArticlePage(newsItem.shortLink));
+        await Navigation.PushAsync(new NewsArticlePage(newsItem.shortLink, newsItem.thumbUrl,
+			newsItem.title));
     }
 }

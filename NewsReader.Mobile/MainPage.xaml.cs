@@ -37,10 +37,9 @@ namespace NewsReader.Mobile
         }
 
 
-        private async void OnCategoryClickedClicked(object sender, EventArgs e)
+        private async void CategoriesListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var btn = (Button)sender;
-            var category = (NewsReader.Mobile.Models.Catergory)btn.BindingContext;
+            var category = (NewsReader.Mobile.Models.Catergory)e.Item;
             await Navigation.PushAsync(new NewsItemsPage(category.Title));
         }
 

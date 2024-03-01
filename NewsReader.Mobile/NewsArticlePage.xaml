@@ -4,22 +4,26 @@
              x:Class="NewsReader.Mobile.NewsArticlePage"             
              Title="NewsArticlePage">
     <ScrollView>
-        <VerticalStackLayout Padding="10">
-                <Label 
-                    x:Name="lblTitle" Padding="5"
-                    Text="Welcome to .NET MAUI!"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-                <Image 
+        <Grid Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Image 
+                Grid.Row="0"
                     x:Name="imgArticle"
                     VerticalOptions="Center" 
+                    Aspect="AspectFill"
+                    WidthRequest="400"                    
                     HorizontalOptions="Center" />
-                <Label
+            <Label Grid.Row="1"
+                   Padding="5"
                     x:Name="lblArticle"
                     Text="This is a description of the article."
                     VerticalOptions="Center" 
-                    TextType="Html"
+                    TextType="Html"                    
                     HorizontalOptions="Center" />
-            </VerticalStackLayout>
-        </ScrollView>
+        </Grid>
+    </ScrollView>
 </ContentPage>

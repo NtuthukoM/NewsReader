@@ -17,21 +17,28 @@
 
 
             <ListView x:Name="lstCategories" HorizontalOptions="Center"
+                      ItemTapped="CategoriesListView_ItemTapped"
                       ItemsSource="{Binding categories}"
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <HorizontalStackLayout Padding="3">
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Title}"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       Grid.Column="0"
                                        HorizontalOptions="Start"
                                        HorizontalTextAlignment="Center"
                                        />
-                                <Button 
-                                    Text="{Binding Title}"
-                                    Clicked="OnCategoryClickedClicked"
-                                    HorizontalOptions="EndAndExpand" />
-                            </HorizontalStackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
