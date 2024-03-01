@@ -65,14 +65,14 @@ namespace NewsReader.Application.Services
                 string content = await response.Content.ReadAsStringAsync();
                 var doc = XDocument.Parse(content);
                 var serializer = new XmlSerializer(typeof(NewsItem));
-                foreach (var element in doc.Descendants())
+                foreach (var element in doc.Descendants(XName.Get("item")))
                 {
                     element.Attributes().Where(a => a.IsNamespaceDeclaration).Remove();
                     element.Name = element.Name.LocalName;
                     if (element.Name.LocalName == "item")
                     {
                         NewsItem item = ParseNewsItem(element);
-                        if(item.pubDate == DateTime.Now.ToShortDateString())
+                        //if(item.pubDate == DateTime.Now.ToShortDateString())
                         items.Add(item);
                     }
                 }

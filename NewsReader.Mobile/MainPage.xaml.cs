@@ -37,11 +37,11 @@ namespace NewsReader.Mobile
         }
 
 
-        private void OnCategoryClickedClicked(object sender, EventArgs e)
+        private async void OnCategoryClickedClicked(object sender, EventArgs e)
         {
             var btn = (Button)sender;
             var category = (NewsReader.Mobile.Models.Catergory)btn.BindingContext;
-            Navigation.PushAsync(new NewsItemsPage(category.Title));
+            await Navigation.PushAsync(new NewsItemsPage(category.Title));
         }
 
     }
