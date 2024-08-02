@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsReader.Mobile.AboutPage"
-             Title="AboutPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Isolezwe lanamhlanje!"
+             Title="Mayelana">
+    <VerticalStackLayout Padding="10">
+        <Label Padding="5" FontAttributes="Bold"
+            Text="Siyakwamukela ku-Isolezwe lanamhlanje!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Label 
-            Text="This app brings you a a selection of Isolezwe articles published today for you to read."
+            Text="Lolu hlelo lokusebenza lukulethela uchungechunge lwezihloko zeSolezwe ezishicilelwe namuhla ukuze uzifunde."
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

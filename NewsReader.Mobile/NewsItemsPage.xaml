@@ -5,7 +5,7 @@
              Title="NewsItemsPage">
     <ScrollView>
         <ListView x:Name="NewsItemsListView"
-                  RowHeight="110"
+                  RowHeight="130"
                       ItemTapped="NewsItemsListView_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -17,19 +17,17 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding thumbUrl}" 
+                                    HorizontalOptions="CenterAndExpand"
+                                   Aspect="AspectFill"
+                                   HeightRequest="90"
+                                   />
                             <Label Text="{Binding title}"
                                    LineBreakMode="WordWrap"
-                                   />
-                            <Image Source="{Binding thumbUrl}" 
-                                   Grid.Row="1"
-                                   Grid.Column="1" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="80"
-                                   WidthRequest="80"
-                                   HorizontalOptions="End"
-                                   />
+                                     Grid.Row="1"
+                                   />                            
                         </Grid>
                     </ViewCell>
                     </DataTemplate>

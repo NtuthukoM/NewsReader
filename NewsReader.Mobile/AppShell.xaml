@@ -7,11 +7,11 @@
     Shell.FlyoutBehavior="Disabled">
     <TabBar>
         <ShellContent
-        Title="Home"
+        Title="Ekhaya"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
         <ShellContent
-            Title="About"
+            Title="Mayelana"
             ContentTemplate="{DataTemplate local:AboutPage}"
             Route="AboutPage" />
     </TabBar>
