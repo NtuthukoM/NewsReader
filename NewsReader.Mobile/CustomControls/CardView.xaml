@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="this"
+             x:Class="NewsReader.Mobile.CustomControls.CardView">
+    <Frame BindingContext="{x:Reference this}"
+           BackgroundColor="{Binding CardColor}"
+           BorderColor="{Binding BorderColor}"
+           Padding="0"
+           MinimumHeightRequest="150"
+            >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame BorderColor="{Binding BorderColor, FallbackValue='Black'}" 
+                   Padding="0"
+                   BackgroundColor="{Binding IconBackgroundColor, FallbackValue='Grey'}"
+                   >
+                <Image Source="{Binding IconImageSource}"
+                                    HorizontalOptions="Fill"
+                                   Aspect="AspectFill"                     
+                       />
+            </Frame>
+            <Label Text="{Binding CardTitle, FallbackValue='Card Title'}"
+                   Padding="5"
+                   Grid.Row="1"
+                   FontAttributes="Bold"
+                   FontSize="Header"
+                    />
+        </Grid>
+    </Frame>
+</ContentView>
