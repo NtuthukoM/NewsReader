@@ -1,5 +1,6 @@
 ﻿using NewsReader.Application.Contracts;
 using NewsReader.Domain;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -38,17 +39,24 @@ namespace NewsReader.Application.Services
             var newsItems = await GetNewsItemsAsync();
             foreach (var item in newsItems)
             {
-                //https://www.isolezwe.co.za/izindaba/usomabhizinisi-nohlelo-lokulekelela-abantulayo-5f785660-81ef-46df-b8d0-769deec08176
-                string category = item.link
-                    .Replace(baseUrl, "")
-                    .Split("/")[0];
-                if (!categories.Any(x => x.Title == category))
+                try
                 {
-                    var cat = new Catergory
+                    //https://www.isolezwe.co.za/izindaba/usomabhizinisi-nohlelo-lokulekelela-abantulayo-5f785660-81ef-46df-b8d0-769deec08176
+                    string category = item.link
+                        .Replace(baseUrl, "")
+                        .Split("/")[0];
+                    if (!categories.Any(x => x.Title == category))
                     {
-                        Title = category,
-                    };
-                    categories.Add(cat);
+                        var cat = new Catergory
+                        {
+                            Title = category,
+                            ImageUrl = getCategoryIcon(category)
+                        };
+                        categories.Add(cat);
+                    }
+                }catch(Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
                 }
             }
             return categories;
@@ -119,6 +127,25 @@ namespace NewsReader.Application.Services
             }
 
             return item;
+        }
+
+        private string getCategoryIcon(string title)
+        {
+            string icon = "";
+            if (!string.IsNullOrEmpty(title))
+            {
+                var icons = new Dictionary<string, string>
+                {
+                    { "izindaba", "news.png" },
+                    { "ezokungcebeleka", "entertainment.png" },
+                    { "ezempilo", "health.png" },
+                    //{ "impilo-yabantu", "health.png" },
+                    { "imibono", "opinion.png" },
+                    { "ezemidlalo", "sport.png" }
+                };
+                icon = icons.ContainsKey(title.ToLower()) ? icons[title.ToLower()] : "news.png";
+            }
+            return icon;
         }
     }
 }

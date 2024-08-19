@@ -31,10 +31,17 @@
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImageUrl}" 
+                       WidthRequest="25"
+                       HeightRequest="25"
+                       Aspect="AspectFill" 
+                                       Margin="2,2,15,2"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
                                 <Label Text="{Binding Title}"
                                        FontAttributes="Bold"
                                        FontSize="Large"
-                                       Grid.Column="0"
+                                       Grid.Column="1"
                                        HorizontalOptions="Start"
                                        HorizontalTextAlignment="Center"
                                        />
