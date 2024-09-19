@@ -23,6 +23,7 @@ public partial class NewsItemsPage : ContentPage
 		var client = new HttpClient(new HttpsClientHandlerService().GetPlatformMessageHandler());
 		var response = client.GetStringAsync(categoryUrl).Result;
 		var _newsItems = JsonConvert.DeserializeObject<List<NewsReader.Mobile.Models.NewsItem>>(response);
+		_newsItems.ForEach(x => x.title =x.title.Length > 60 ? x.title.Substring(0, 59) + "..." : x.title);
         NewsItemsListView.ItemsSource = _newsItems;
 
     }

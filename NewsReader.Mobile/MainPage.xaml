@@ -10,11 +10,10 @@
             VerticalOptions="Center">
 
             <Image
-                Source="mainicon.svg"
-                SemanticProperties.Description="App Icon"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
+                    Source="izindaba.png"
+                    SemanticProperties.Description="App Icon"
+                    HeightRequest="200"
+                    HorizontalOptions="Center" />
 
             <ListView x:Name="lstCategories" HorizontalOptions="Center"
                       ItemTapped="CategoriesListView_ItemTapped"
