@@ -18,19 +18,27 @@ public partial class NewsItemsPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-		// Load news items&
-		var newsItems = new List<NewsReader.Mobile.Models.NewsItem>();
-		var client = new HttpClient(new HttpsClientHandlerService().GetPlatformMessageHandler());
-		var response = client.GetStringAsync(categoryUrl).Result;
-		var _newsItems = JsonConvert.DeserializeObject<List<NewsReader.Mobile.Models.NewsItem>>(response);
-		_newsItems.ForEach(x => x.title =x.title.Length > 60 ? x.title.Substring(0, 59) + "..." : x.title);
-        NewsItemsListView.ItemsSource = _newsItems;
+		try
+		{
+			// Load news items&
+			var newsItems = new List<NewsReader.Mobile.Models.NewsItem>();
+			var client = new HttpClient(new HttpsClientHandlerService().GetPlatformMessageHandler());
+			var response = client.GetStringAsync(categoryUrl).Result;
+			var _newsItems = JsonConvert.DeserializeObject<List<NewsReader.Mobile.Models.NewsItem>>(response);
+			_newsItems.ForEach(x => x.title = x.title.Length > 60 ? x.title.Substring(0, 59) + "..." : x.title);
+			cNewsItemsListView.ItemsSource = _newsItems;
+		}
+		catch (Exception ex)
+		{
+			Console.Write(ex.ToString());
+		}
 
     }
-	async void NewsItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
-	{
-        var newsItem = (NewsReader.Mobile.Models.NewsItem)e.Item;
-        await Navigation.PushAsync(new NewsArticlePage(newsItem.shortLink, newsItem.thumbUrl,
+
+    private async void cNewsItemsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+		var newsItem = e.CurrentSelection.FirstOrDefault() as Models.NewsItem;
+        await Navigation.PushModalAsync(new NewsArticlePage(newsItem.shortLink, newsItem.thumbUrl,
 			newsItem.title));
     }
 }

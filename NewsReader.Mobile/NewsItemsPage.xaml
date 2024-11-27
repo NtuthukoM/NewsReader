@@ -5,21 +5,30 @@
              x:Class="NewsReader.Mobile.NewsItemsPage"
              Title="NewsItemsPage">
     <ScrollView>
-        <ListView x:Name="NewsItemsListView"
-                  RowHeight="230"
-                      ItemTapped="NewsItemsListView_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                        <controls:CardView BorderColor="DarkGray"
-                                           Padding="10"
-                              CardTitle="{Binding title}"
-                              CardDescription="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla elit dolor, convallis non interdum."
-                              IconBackgroundColor="SlateGray"
-                              IconImageSource="{Binding thumbUrl}" />
-                    </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <CollectionView  x:Name="cNewsItemsListView" SelectionMode="Single"
+                         SelectionChanged="cNewsItemsListView_SelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid  Margin="10" BackgroundColor="LightGray">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding thumbUrl}"
+                                    HorizontalOptions="Fill"
+                                   Aspect="AspectFill"                     
+                       />
+                        <Label Text="{Binding title}"
+                   Padding="5"
+                   Grid.Row="1"
+                   FontAttributes="Italic"
+                   FontSize="Medium"
+                               
+                    />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ScrollView>
 </ContentPage>

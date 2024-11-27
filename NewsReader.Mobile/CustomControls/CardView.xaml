@@ -14,9 +14,9 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="27" />
             </Grid.RowDefinitions>
-            <Frame BorderColor="{Binding BorderColor, FallbackValue='Black'}" 
+            <Frame BorderColor="Black" 
                    Padding="0"
-                   BackgroundColor="{Binding IconBackgroundColor, FallbackValue='Grey'}"
+                   BackgroundColor="Gray"
                    >
                 <Image Source="{Binding IconImageSource}"
                                     HorizontalOptions="Fill"
